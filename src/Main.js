@@ -1004,137 +1004,166 @@ const Main = () => {
         const [isAutoplay, setIsAutoplay] = useState(true);
         const [isMobile, setIsMobile] = useState(false);
 
-        // Check if screen is mobile
+
+        // Vérifier si l'écran est en mode mobile
         useEffect(() => {
-            const checkIfMobile = () => setIsMobile(window.innerWidth < 1024);
+            const checkIfMobile = () => {
+                setIsMobile(window.innerWidth < 1024);
+            };
+
             checkIfMobile();
             window.addEventListener('resize', checkIfMobile);
+
             return () => window.removeEventListener('resize', checkIfMobile);
         }, []);
 
-        // Autoplay for mobile carousel
+        // Autoplay pour le carrousel mobile
         useEffect(() => {
             let interval;
+
             if (isAutoplay && isMobile) {
                 interval = setInterval(() => {
-                    setActiveSlide((prev) => (prev + 1) % featureData.length);
+                    setActiveSlide(prev => (prev + 1) % featureData.length);
                 }, 5000);
             }
+
             return () => clearInterval(interval);
         }, [isAutoplay, isMobile]);
 
         const featureData = [
             {
                 icon: <Car className="w-6 h-6" />,
+                emoji: "🚗",
                 title: "Livraison Gratuite",
-                content: "Livraison et récupération à l'adresse de votre choix, sans frais dans un rayon de 20km.",
-                color: "from-[#FFD700] to-[#DAA520]",
+                content: "Livraison et récupération à l'adresse de votre choix, sans frais supplémentaires dans un rayon de 20km.",
+                color: "from-red-500 to-orange-500"
             },
             {
                 icon: <Shield className="w-6 h-6" />,
+                emoji: "🛡️",
                 title: "Assurance Premium",
-                content: "Couverture tous risques incluse avec assistance 24/7 et 5000DH de franchise.",
-                color: "from-[#FFD700] to-[#DAA520]",
+                content: "Couverture tous risques incluse dans chaque location avec assistance 24/7 et 5000DH de franchise.",
+                color: "from-blue-400 to-cyan-500"
             },
             {
                 icon: <PhoneCall className="w-6 h-6" />,
+                emoji: "📱",
                 title: "Service Client 24/7",
-                content: "Une équipe multilingue à votre disposition à tout moment.",
-                color: "from-[#FFD700] to-[#DAA520]",
+                content: "Une équipe multilingue à votre disposition à tout moment pour répondre à toutes vos questions.",
+                color: "from-yellow-400 to-amber-500"
             },
             {
                 icon: <Settings className="w-6 h-6" />,
+                emoji: "⚙️",
                 title: "Entretien Premium",
-                content: "Véhicules entretenus régulièrement et vérifiés après chaque location.",
-                color: "from-[#FFD700] to-[#DAA520]",
+                content: "Tous nos véhicules bénéficient d'un entretien régulier et sont vérifiés après chaque location.",
+                color: "from-[#5a4bbd] to-[#312783]"
             },
             {
                 icon: <CreditCard className="w-6 h-6" />,
+                emoji: "💳",
                 title: "Paiement Flexible",
-                content: "Options de paiement adaptées avec possibilité d'échelonnement sans frais.",
-                color: "from-[#FFD700] to-[#DAA520]",
+                content: "Multiples options de paiement adaptées à vos besoins, avec possibilité d'échelonnement sans frais.",
+                color: "from-purple-400 to-indigo-500"
             },
             {
                 icon: <Clock className="w-6 h-6" />,
+                emoji: "⏱️",
                 title: "Réservation Express",
-                content: "Réservation simplifiée, validation instantanée, modification gratuite jusqu'à 48h avant.",
-                color: "from-[#FFD700] to-[#DAA520]",
-            },
+                content: "Processus de réservation simplifié, validation instantanée et modification gratuite jusqu'à 48h avant.",
+                color: "from-pink-400 to-rose-500"
+            }
         ];
 
         const containerVariants = {
             hidden: { opacity: 0 },
-            visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.3 } },
+            visible: {
+                opacity: 1,
+                transition: {
+                    staggerChildren: 0.1,
+                    delayChildren: 0.2
+                }
+            }
         };
 
         const itemVariants = {
-            hidden: { y: 20, opacity: 0 },
-            visible: { y: 0, opacity: 1, transition: { duration: 0.7, ease: "easeOut" } },
+            hidden: { y: 30, opacity: 0 },
+            visible: {
+                y: 0,
+                opacity: 1,
+                transition: {
+                    duration: 0.6,
+                    ease: [0.25, 0.1, 0.25, 1.0]
+                }
+            }
         };
 
         const handleSlideChange = (index) => {
             setActiveSlide(index);
             setIsAutoplay(false);
+            // Réactive l'autoplay après 8 secondes d'inactivité
             setTimeout(() => setIsAutoplay(true), 8000);
         };
 
         return (
-            <section
-                id="features"
-                className="py-20 lg:py-28 bg-[#F8F1E9] dark:bg-[#1A1A1A] overflow-hidden relative"
-            >
-                <div className="max-w-7xl mx-auto px-6 lg:px-8">
-                    {/* Decorative Background Elements */}
-                    <div className="absolute top-0 left-0 w-64 h-64 bg-[#FFD700] rounded-full filter blur-3xl opacity-10 -translate-x-1/3 -translate-y-1/3"></div>
-                    <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#DAA520] rounded-full filter blur-3xl opacity-10 translate-x-1/3 translate-y-1/3"></div>
+            <section id="features" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-tr from-gray-50 via-white to-[#AFDBF5] dark:from-gray-900 dark:to-gray-950 overflow-hidden">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                    {/* Éléments de fond décoratifs */}
+                    <div className="absolute top-0 left-0 w-72 h-72 bg-[#AFDBF5] dark:bg-amber-700 rounded-full filter blur-3xl opacity-20 -translate-x-1/2 -translate-y-1/2"></div>
+                    <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#AFDBF5] dark:bg-[#AFDBF5] rounded-full filter blur-3xl opacity-20 translate-x-1/2 translate-y-1/2"></div>
 
-                    {/* Header */}
                     <motion.div
                         initial={{ opacity: 0, y: -20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        transition={{ duration: 0.7, ease: "easeOut" }}
                         viewport={{ once: true }}
                         className="text-center mb-16 relative z-10"
                     >
-                    <span className="inline-block py-2 px-4 rounded-full text-sm font-medium tracking-wide text-[#DAA520] bg-[#FFD700]/20 dark:bg-[#FFD700]/10">
-                        SERVICE PREMIUM
-                    </span>
-                        <h2 className="mt-4 text-4xl lg:text-5xl font-serif font-bold text-[#1A1A1A] dark:text-[#F8F1E9] leading-tight">
-                            Nos Avantages{" "}
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] to-[#DAA520]">
-                            Exclusifs
+                        <motion.div
+                            initial={{ scale: 0.95, opacity: 0 }}
+                            whileInView={{ scale: 1, opacity: 1 }}
+                            transition={{ delay: 0.2, duration: 0.5 }}
+                            viewport={{ once: true }}
+                            className="mb-4"
+                        >
+                        <span className="inline-block py-1 px-3 rounded-full text-xs font-semibold tracking-wider text-amber-800 bg-amber-100 dark:bg-amber-900 dark:text-amber-200">
+                            PREMIUM SERVICE
                         </span>
+                        </motion.div>
+                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-6 text-gray-900 dark:text-gray-100 leading-tight">
+                            Nos Avantages <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-500">Exclusifs</span>
                         </h2>
-                        <p className="mt-2 max-w-2xl mx-auto text-lg text-[#4A4A4A] dark:text-[#A0A0A0]">
-                            Découvrez un service de location d’exception conçu pour les plus exigeants.
+                        <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-400 text-base sm:text-lg">
+                            Découvrez pourquoi notre service de location est le choix privilégié des voyageurs exigeants
                         </p>
                     </motion.div>
 
-                    {/* Mobile Carousel */}
+                    {/* Version Mobile: Carousel amélioré */}
                     <div className="lg:hidden relative">
-                        <div className="overflow-hidden rounded-2xl">
+                        <div className="overflow-hidden rounded-xl">
                             <div
                                 className="flex transition-transform duration-500 ease-out"
                                 style={{ transform: `translateX(-${activeSlide * 100}%)` }}
                             >
                                 {featureData.map((feature, index) => (
-                                    <div key={index} className="w-full flex-shrink-0 p-2">
+                                    <div
+                                        key={index}
+                                        className="w-full flex-shrink-0 p-1"
+                                    >
                                         <motion.div
                                             initial={{ opacity: 0, scale: 0.95 }}
                                             whileInView={{ opacity: 1, scale: 1 }}
-                                            transition={{ duration: 0.5 }}
+                                            transition={{ delay: 0.1, duration: 0.5 }}
                                             viewport={{ once: true }}
-                                            className="p-6 rounded-2xl bg-white dark:bg-[#2A2A2A] shadow-md border border-[#FFD700]/20"
+                                            className="h-full p-6 rounded-3xl bg-white dark:bg-gray-800 shadow-lg border border-gray-100 dark:border-gray-700 flex flex-col"
                                         >
-                                            <div
-                                                className={`mb-4 w-14 h-14 rounded-xl bg-gradient-to-r ${feature.color} flex items-center justify-center`}
-                                            >
+                                            <div className={`mb-5 self-start inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r ${feature.color} shadow-lg`}>
                                                 <div className="text-white">{feature.icon}</div>
                                             </div>
-                                            <h3 className="text-xl font-serif font-semibold text-[#1A1A1A] dark:text-[#F8F1E9]">
+                                            <h3 className="text-xl font-bold mb-3 text-gray-800 dark:text-gray-200">
                                                 {feature.title}
                                             </h3>
-                                            <p className="text-sm text-[#4A4A4A] dark:text-[#A0A0A0] leading-relaxed">
+                                            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                                                 {feature.content}
                                             </p>
                                         </motion.div>
@@ -1143,123 +1172,101 @@ const Main = () => {
                             </div>
                         </div>
 
-                        {/* Navigation Controls */}
-                        <div className="mt-6 flex items-center justify-center gap-3">
+                        {/* Contrôles de navigation */}
+                        <div className="mt-6 flex items-center justify-center gap-4">
                             <button
-                                onClick={() =>
-                                    handleSlideChange((activeSlide - 1 + featureData.length) % featureData.length)
-                                }
-                                className="p-2 rounded-full bg-white dark:bg-[#2A2A2A] border border-[#FFD700]/20 hover:bg-[#FFD700]/10"
+                                onClick={() => handleSlideChange((activeSlide - 1 + featureData.length) % featureData.length)}
+                                className="p-2 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all duration-300"
+                                aria-label="Slide précédent"
                             >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="#DAA520"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-600 dark:text-gray-400">
                                     <path d="M15 18l-6-6 6-6" />
                                 </svg>
                             </button>
-                            <div className="flex gap-2">
+
+                            <div className="flex space-x-2">
                                 {featureData.map((_, index) => (
                                     <button
                                         key={index}
                                         onClick={() => handleSlideChange(index)}
-                                        className={`w-2 h-2 rounded-full ${
-                                            activeSlide === index ? "bg-[#DAA520] w-5" : "bg-[#4A4A4A]/30"
+                                        className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                                            activeSlide === index
+                                                ? 'bg-[#0061ff] w-6'
+                                                : 'bg-gray-300 dark:bg-gray-700'
                                         }`}
+                                        aria-label={`Aller à la diapositive ${index + 1}`}
                                     />
                                 ))}
                             </div>
+
                             <button
                                 onClick={() => handleSlideChange((activeSlide + 1) % featureData.length)}
-                                className="p-2 rounded-full bg-white dark:bg-[#2A2A2A] border border-[#FFD700]/20 hover:bg-[#FFD700]/10"
+                                className="p-2 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all duration-300"
+                                aria-label="Slide suivant"
                             >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="#DAA520"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-600 dark:text-gray-400">
                                     <path d="M9 18l6-6-6-6" />
                                 </svg>
                             </button>
                         </div>
                     </div>
 
-                    {/* Desktop Grid */}
+                    {/* Version Desktop: Grille améliorée */}
                     <motion.div
                         variants={containerVariants}
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, margin: "-50px" }}
-                        className="hidden lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10"
+                        className="hidden lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 relative z-10"
                     >
                         {featureData.map((feature, index) => (
                             <motion.div
                                 key={index}
                                 variants={itemVariants}
-                                whileHover={{ y: -5, boxShadow: "0 10px 20px rgba(218, 165, 32, 0.15)" }}
-                                className="p-8 rounded-2xl bg-white dark:bg-[#2A2A2A] shadow-md hover:shadow-lg border border-[#FFD700]/20 transition-all duration-300"
+                                whileHover={{
+                                    y: -8,
+                                    scale: 1.02,
+                                    boxShadow: '0 15px 30px rgba(0, 0, 0, 0.1)',
+                                    transition: { duration: 0.3 }
+                                }}
+                                className="group p-8 rounded-3xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl dark:shadow-gray-900/30 dark:hover:shadow-gray-800/40 border border-gray-100 dark:border-gray-700 transition-all duration-300 backdrop-blur-sm bg-white/70 dark:bg-gray-800/70"
                             >
-                                <div
-                                    className={`mb-6 w-14 h-14 rounded-xl bg-gradient-to-r ${feature.color} flex items-center justify-center`}
-                                >
+                                <div className={`mb-6 inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r ${feature.color} shadow-lg transform group-hover:scale-110 transition-transform duration-300`}>
                                     <div className="text-white">{feature.icon}</div>
                                 </div>
-                                <h3 className="text-xl font-serif font-semibold text-[#1A1A1A] dark:text-[#F8F1E9] mb-3">
+                                <h3 className="text-xl font-bold mb-4 text-gray-800 dark:text-gray-200 group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors duration-300">
                                     {feature.title}
                                 </h3>
-                                <p className="text-base text-[#4A4A4A] dark:text-[#A0A0A0] leading-relaxed">
-                                    {feature.content}
-                                </p>
-                                <div className="mt-4 h-px w-12 bg-[#DAA520] rounded-full"></div>
+                                <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">{feature.content}</p>
+
+                                <div className="mt-6 h-0.5 w-16 bg-gradient-to-r from-amber-300 to-amber-500 rounded-full transform scale-0 group-hover:scale-100 transition-transform duration-300 origin-left"></div>
                             </motion.div>
                         ))}
                     </motion.div>
 
-                    {/* CTA */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5, duration: 0.7 }}
+                        transition={{ delay: 0.5, duration: 0.5 }}
                         viewport={{ once: true }}
                         className="mt-16 text-center relative z-10"
                     >
                         <a
                             href="#fleet"
-                            className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-[#FFD700] to-[#DAA520] text-[#1A1A1A] font-semibold rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                            className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-br from-[#312783] to-[#0061ff] text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 active:translate-y-0 group"
                         >
-                            Découvrir notre flotte
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="20"
-                                height="20"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="#1A1A1A"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className="ml-2"
-                            >
+                            <span>Découvrir notre flotte</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300">
                                 <path d="M5 12h14"></path>
                                 <path d="M12 5l7 7-7 7"></path>
                             </svg>
                         </a>
-                        <p className="mt-6 text-sm text-[#4A4A4A] dark:text-[#A0A0A0]">
-                            Plus de 10 000 clients satisfaits • Note moyenne de 4.9/5
-                        </p>
+
+                        <div className="mt-8">
+                            <p className="text-sm text-gray-500 dark:text-gray-500">
+                                Plus de 10 000 clients satisfaits • Note moyenne de 4.9/5
+                            </p>
+                        </div>
                     </motion.div>
                 </div>
             </section>

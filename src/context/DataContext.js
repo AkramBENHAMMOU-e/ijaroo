@@ -20,7 +20,7 @@ export function DataProvider({ children }) {
   });
   const [isLoading, setIsLoading] = useState(true);
 
-  const API_BASE_URL = 'http://localhost:5000/api';
+  const API_BASE_URL = 'https://backend-iota-peach.vercel.app/api';
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -84,24 +84,7 @@ export function DataProvider({ children }) {
     }
   };
 
-  const updateCar = async (id, formData) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/cars/${id}`, {
-        method: 'PUT',
-        body: formData,
-      });
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Échec de la mise à jour de la voiture : ${errorText}`);
-      }
-      const updatedCar = await response.json();
-      setCars((prevCars) => prevCars.map((car) => (car.id === id ? updatedCar : car)));
-      return updatedCar;
-    } catch (error) {
-      console.error('Erreur dans updateCar :', error);
-      throw error;
-    }
-  };
+
 
   const deleteCar = async (id) => {
     try {
