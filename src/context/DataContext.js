@@ -20,7 +20,7 @@ export function DataProvider({ children }) {
   });
   const [isLoading, setIsLoading] = useState(true);
 
-  const API_BASE_URL = '';
+  const API_BASE_URL = 'https://location-peach.vercel.app/api';
 
   const fetchData = async () => {
     setIsLoading(true);
