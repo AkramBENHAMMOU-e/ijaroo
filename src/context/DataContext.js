@@ -8,13 +8,13 @@ export function DataProvider({ children }) {
   const [customers, setCustomers] = useState([]);
   const [testimonials, setTestimonials] = useState([]);
   const [settings, setSettings] = useState({
-    siteName: 'YLH CAR',
-    phone: '212661918917',
-    contactEmail: 'reservation@ylhcar.ma',
-    instagram: 'https://instagram.com/ylhcarofficiel',
-    facebook: 'https://www.facebook.com/YLHCAR',
-    adress: 'Bouchouk résidence annakhil 2, Salé',
-    gps: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3304.566074414049!2d-6.785799300000001!3d34.0806362!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda769b090183891%3A0x39e21bb9b22eafd5!2sYLH%20CAR!5e0!3m2!1sfr!2sma!4v1741453156087!5m2!1sfr!2sma',
+    siteName: 'IJAROO',
+    phone: '2126XXXXX',
+    contactEmail: 'reservation@ijaroo.ma',
+    instagram: 'https://instagram.com',
+    facebook: 'https://www.facebook.com',
+    adress: 'adresse XXXXX, Maroc',
+    gps: '',
     password: '',
     maintenanceMode: false,
   });
@@ -48,13 +48,13 @@ export function DataProvider({ children }) {
       setCustomers(customersData);
       setTestimonials(testimonialsData);
       setSettings({
-        siteName: settingsData.site_name || 'YLH CAR',
-        phone: settingsData.phone || '212661918917',
-        contactEmail: settingsData.contact_email || 'reservation@ylhcar.ma',
-        instagram: settingsData.instagram || 'https://instagram.com/ylhcarofficiel',
-        facebook: settingsData.facebook || 'https://www.facebook.com/YLHCAR',
-        adress: settingsData.adress || 'Bouchouk résidence annakhil 2, Salé',
-        gps: settingsData.gps || 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3304.566074414049!2d-6.785799300000001!3d34.0806362!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda769b090183891%3A0x39e21bb9b22eafd5!2sYLH%20CAR!5e0!3m2!1sfr!2sma!4v1741453156087!5m2!1sfr!2sma',
+        siteName: settingsData.site_name || 'IJAROO',
+        phone: settingsData.phone || '212600000',
+        contactEmail: settingsData.contact_email || 'reservation@ijaroo.ma',
+        instagram: settingsData.instagram || 'https://instagram.com',
+        facebook: settingsData.facebook || 'https://www.facebook.com',
+        adress: settingsData.adress || 'adresse , XXXXX, Maroc',
+        gps: settingsData.gps || '',
         password: settingsData.password || '',
         maintenanceMode: settingsData.maintenance_mode === 1,
       });

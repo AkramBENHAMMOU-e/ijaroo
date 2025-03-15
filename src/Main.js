@@ -236,7 +236,7 @@ const Main = () => {
             showCancelButton: true,
             confirmButtonText: 'Réserver',
             cancelButtonText: 'Annuler',
-            confirmButtonColor: '#312783',
+            confirmButtonColor: '#008000',
             cancelButtonColor: '#EF4444',
             backdrop: true,
             allowOutsideClick: () => !Swal.isLoading()
@@ -285,7 +285,7 @@ const Main = () => {
                 icon: 'error',
                 title: 'Erreur',
                 text: 'Une erreur est survenue lors de la réservation.',
-                confirmButtonColor: '#green',
+                confirmButtonColor: '#008000',
                 width: window.innerWidth < 768 ? 'auto' : '450px',
                 padding: window.innerWidth < 768 ? '1em' : '1.5em'
             });
@@ -554,7 +554,7 @@ const Main = () => {
                                             heroDisplayCars[currentCarIndex]?.id,
                                             addCustomer,
                                             addReservation)}
-                                        className="px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-[#ff7f00] to-[#ff8c00] text-white rounded-lg text-sm md:text-base font-medium hover:shadow-lg transition-all"
+                                        className="px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-[#fe6100] to-[#ff8c00] text-white rounded-lg text-sm md:text-base font-medium hover:shadow-lg transition-all"
                                     >
                                         Réserver maintenant →
                                     </button>
@@ -977,7 +977,7 @@ const Main = () => {
                                             disabled={!car.available}
                                         >
                                             <Car className="w-4 h-4 sm:w-5 sm:h-5" />
-                                            <span>{car.available ? 'Réserver maintenant' : 'Non disponible'}</span>
+                                            <span>{car.available ? 'Réserver' : 'Non disponible'}</span>
                                         </button>
                                     </div>
                                 </motion.div>
@@ -1866,9 +1866,9 @@ const Main = () => {
                                 className="flex justify-between items-center border-b border-gray-700 pb-3 md:border-none md:pb-0 cursor-pointer group"
                                 onClick={() => toggleSection('navigation')}
                             >
-                                <h4 className="font-bold text-lg text-[#ff8c00]">Navigation</h4>
+                                <h4 className="font-bold text-lg text-[#fe6100]">Navigation</h4>
                                 <FaChevronDown
-                                    className="md:hidden transform transition-transform duration-300 text-[#ff8c00] group-hover:text-white"
+                                    className="md:hidden transform transition-transform duration-300 text-[#fe6100] group-hover:text-white"
                                     style={{ transform: openSection === 'navigation' ? 'rotate(180deg)' : 'rotate(0deg)' }}
                                 />
                             </div>
@@ -1887,7 +1887,7 @@ const Main = () => {
                                 className="flex justify-between items-center border-b border-gray-700 pb-3 md:border-none md:pb-0 cursor-pointer group"
                                 onClick={() => toggleSection('legal')}
                             >
-                                <h4 className="font-bold text-lg text-[#ff8c00]">Légal</h4>
+                                <h4 className="font-bold text-lg text-[#fe6100]">Légal</h4>
                                 <FaChevronDown
                                     className="md:hidden transform transition-transform duration-300 text-[#ff8c00] group-hover:text-white"
                                     style={{ transform: openSection === 'legal' ? 'rotate(180deg)' : 'rotate(0deg)' }}
@@ -1932,7 +1932,7 @@ const Main = () => {
                                 className="flex justify-between items-center border-b border-gray-700 pb-3 md:border-none md:pb-0 cursor-pointer group"
                                 onClick={() => toggleSection('social')}
                             >
-                                <h4 className="font-bold text-lg text-[#ff8c00]">Réseaux sociaux</h4>
+                                <h4 className="font-bold text-lg text-[#fe6100]">Réseaux sociaux</h4>
                                 <FaChevronDown
                                     className="md:hidden transform transition-transform duration-300 text-[#ff8c00] group-hover:text-white"
                                     style={{ transform: openSection === 'social' ? 'rotate(180deg)' : 'rotate(0deg)' }}
